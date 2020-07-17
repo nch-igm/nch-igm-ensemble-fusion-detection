@@ -1,0 +1,20 @@
+# RStudio
+.Rproj.user
+.Rhistory
+
+# Linux
+*~
+.nfs*
+
+# Apple
+._*
+*.DS_Store
+
+# DB configuration
+.dbconfig.R
+
+# README preview file
+README.html
+
+# tmp/ directory
+tmp/
