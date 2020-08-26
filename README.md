@@ -4,7 +4,7 @@
 
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
-- [Run Overlap](#run-overlap)
+- [Run Overlap](#running-overlap-from-kickoff_overlap.sh-using-bash)
 
 ## Introduction
 
@@ -14,17 +14,17 @@ Fusion detection overlap merges fusion output data from [EricScript](https://sit
 
 ### Download code
 
-Download the overlap code from GitHub. Use `git` to clone the repo or navigate to the [igm-ensemble-fusion-detection](https://github.com/nch-igm/igm-ensemble-fusion-detection) GitHub page, download, and unzip the code.
+Download the overlap code from GitHub. Use `git` to clone the repo or navigate to the [nch-igm-ensemble-fusion-detection](https://github.com/nch-igm/nch-igm-ensemble-fusion-detection) GitHub page, download, and unzip the code.
 
 ```bash
-git clone https://github.com/nch-igm/igm-ensemble-fusion-detection.git
+git clone https://github.com/nch-igm/nch-igm-ensemble-fusion-detection.git
 ```
 
-### Setup dependencies
+### Install dependencies
 
-The main dependencies are [R](#r) and a [Postgres database](#postgres-database).
+The main dependencies are R [(R Setup)](#r-setup) and a Postgres database [(Postgres Database Setup)](#postgres-database-setup).
 
-#### R
+#### R Setup
 
 Install R (version 3.5 is preffered since the code is tested on this version). Visit the [R website](https://www.r-project.org/) for installation instructions or use your preferred install tool.
 
@@ -52,7 +52,7 @@ install.packages('magritter', repos='http://cran.us.r-project.org/')
 install.packages('purrr', repos='http://cran.us.r-project.org/')
 ```
 
-#### Postgres Database
+#### Postgres Database Setup
 
 Overlap interacts with a database of fusions. The database is used to store previously called fusions. The overlap code queries the database for the frequency of reported fusions. Fusion calls with a high frequency are regarded as artifacts or unlikely to cause disease.
 
@@ -97,7 +97,7 @@ createuser -s postgres
 Import the schema and test data for the fusions database. You may need to modify the host.
 
 ```bash
-cd igm-ensemble-fusion-detection
+cd nch-igm-ensemble-fusion-detection
 psql -h localhost fusions < sql/fusions_example_db_dump.sql
 ```
 
