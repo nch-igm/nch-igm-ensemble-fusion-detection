@@ -6328,6 +6328,8 @@ COPY public.tool (tool_id, tool_name) FROM stdin;
 7	MapSplice
 8	SoapFuse
 9	dragen
+10	arriba
+11	cicero
 \.
 
 
