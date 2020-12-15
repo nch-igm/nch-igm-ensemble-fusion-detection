@@ -149,7 +149,7 @@ Note that -s is not required, and if not added the script will automatically run
 #### Try kickoff_overlap.sh with test data:
 
 ```bash
-overlap/kickoff_overlap.sh -p /test_data/Test
+overlap/kickoff_overlap.sh -p /test_data
 ```
 
 Results (will show you which callers it found output for):
