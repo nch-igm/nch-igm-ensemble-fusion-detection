@@ -8,7 +8,7 @@
 
 ## Introduction
 
-Fusion detection overlap merges fusion output data from [EricScript](https://sites.google.com/site/bioericscript/), [FusionMap](http://www.arrayserver.com/wiki/index.php?title=Oshell#OmicScript_for_FusionMap), [FusionCatcher](https://github.com/ndaniel/fusioncatcher), [JAFFA](https://github.com/Oshlack/JAFFA/wiki), [MapSplice](http://www.netlab.uky.edu/p/bioinfo/MapSplice2), [SOAPfuse](https://sourceforge.net/projects/soapfuse/), [STAR-Fusion](https://github.com/STAR-Fusion/STAR-Fusion/wiki), [TopHat-Fusion](https://ccb.jhu.edu/software/tophat/fusion_index.shtml), and [DRAGEN RNA-Seq](https://www.illumina.com/products/by-type/informatics-products/dragen-bio-it-platform.html).
+Fusion detection overlap merges fusion output data from [Arriba](https://github.com/suhrig/arriba), [CICERO](https://github.com/stjude/CICERO), [FusionMap](http://www.arrayserver.com/wiki/index.php?title=Oshell#OmicScript_for_FusionMap), [FusionCatcher](https://github.com/ndaniel/fusioncatcher), [JAFFA](https://github.com/Oshlack/JAFFA/wiki), [MapSplice](http://www.netlab.uky.edu/p/bioinfo/MapSplice2), [SOAPfuse](https://sourceforge.net/projects/soapfuse/), [STAR-Fusion](https://github.com/STAR-Fusion/STAR-Fusion/wiki), [TopHat-Fusion](https://ccb.jhu.edu/software/tophat/fusion_index.shtml), and [DRAGEN RNA-Seq](https://www.illumina.com/products/by-type/informatics-products/dragen-bio-it-platform.html).
 
 ## Getting Started
 
