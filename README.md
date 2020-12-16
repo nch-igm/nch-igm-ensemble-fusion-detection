@@ -183,39 +183,62 @@ Usage: assemble_results.R --sample s1
 assemble_results.R reads a set of fusion detection result files and produces an aggregated report with the overlapping fusion events predicted in the input files. The program searches recursively from the current directory to find known files. The input files can also be specified manually.
 
 Options:
-        --sample=SAMPLE
-                Name of the sample. (required)
-        --baseDir=BASEDIR
-                Base directory to search for input files. [default = .]
-        --outReport=OUTREPORT
-                Location of the output report. [default = overlap_$sample.tsv]
-        --outReportfilt=OUTREPORTFILT
-                Location of the output report. [default = overlap_filter_$sample.tsv]
-        --foutReport=FOUTREPORT
-                Location of the output report. [default = filtered_overlap_whitelist_$sample.tsv]
-        --foutReport3=FOUTREPORT3
-                Location of the output report. [default = filtered_overlap_whitelist_3callers_$sample.tsv]
-        --outBreakpoints=OUTBREAKPOINTS
-                Location of the breakpoint report. [default = breakpoints_$sample.tsv]
-        --dragen=DRAGEN
-                Path to the dragen results file. [default = search for file named like 'DRAGEN.fusion_candidates.final']
-        --fusionCatcher=FUSIONCATCHER
-                Path to the fusionCatcher results file. [default = search for file named like 'final-list_candidate-fusion-genes.txt']
-        --fusionMap=FUSIONMAP
-                Path to the fusionMap results file. [default = search for file named like 'FusionDetection.FusionReport.Table.txt']
-        --jaffa=JAFFA
-                Path to the jaffa results file. [default = search for file named like 'jaffa_results.csv']
-        --mapSplice=MAPSPLICE
-                Path to the mapSplice results file. [default = search for file named like 'fusions_well_annotated.txt']
-        --soapFuse=SOAPFUSE
-                Path to the soapFuse results file. [default = search for file named like '.final.Fusion.specific.for.genes']
-        --starFusion=STARFUSION
-                Path to the starFusion results file. [default = search for file named like 'star-fusion.fusion_predictions.abridged.tsv']
-        --tophatFusion=TOPHATFUSION
-                Path to the tophatFusion results file. [default = search for file named like 'result.txt']. potential_fusion.txt must be in the same directory as result.txt for the import to work.
-        -h, --help
-                Show this help message and exit
-```
+	--sample=SAMPLE
+		Name of the sample. (required)
+
+	--baseDir=BASEDIR
+		Base directory to search for input files. [default = .]
+
+	--outReport=OUTREPORT
+		Location of the output report. [default = overlap_$sample.tsv]
+
+	--collapseoutReport=COLLAPSEOUTREPORT
+		Location of the output report. [default = collapsed_3callers_$sample.tsv]
+
+	--foutReport=FOUTREPORT
+		Location of the output report. [default = filtered_overlap_2callers_$sample.tsv]
+
+	--foutReport3=FOUTREPORT3
+		Location of the output report. [default = filtered_overlap_3callers_$sample.tsv]
+
+	--outSingleton=OUTSINGLETON
+		Location of the Singleton output report. [default = Singleton_KnownFusions_$sample.tsv]
+
+	--outBreakpoints=OUTBREAKPOINTS
+		Location of the breakpoint report. [default = breakpoints_$sample.tsv]
+
+	--dragen=DRAGEN
+		Path to the dragen results file. [default = search for file named like 'DRAGEN.fusion_candidates.final']
+
+	--fusionCatcher=FUSIONCATCHER
+		Path to the fusionCatcher results file. [default = search for file named like 'final-list_candidate-fusion-genes.txt']
+
+	--fusionMap=FUSIONMAP
+		Path to the fusionMap results file. [default = search for file named like 'FusionDetection.FusionReport.Table.txt']
+
+	--jaffa=JAFFA
+		Path to the jaffa results file. [default = search for file named like 'jaffa_results.csv']
+
+	--mapSplice=MAPSPLICE
+		Path to the mapSplice results file. [default = search for file named like 'fusions_well_annotated.txt']
+
+	--soapFuse=SOAPFUSE
+		Path to the soapFuse results file. [default = search for file named like '.final.Fusion.specific.for.genes']
+
+	--starFusion=STARFUSION
+		Path to the starFusion results file. [default = search for file named like 'star-fusion.fusion_predictions.abridged.tsv']
+
+	--tophatFusion=TOPHATFUSION
+		Path to the tophatFusion results file. [default = search for file named like 'result.txt']. potential_fusion.txt must be in the same directory as result.txt for the import to work.
+
+	--arriba=ARRIBA
+		Specific location of the arriba results file (fusions.tsv).
+
+	--cicero=CICERO
+		Specific location of the cicero results file (annotated.fusion.txt).
+
+	-h, --help
+		Show this help message and exit```
 
 ### `--sample`
 
@@ -260,6 +283,8 @@ R/assemble_results.R --sample s1 --baseDir fusion_results
 `kickoff_overlap.R` recursively searches all directories under the `baseDir` for fusion detection results files. The default search looks for
 
 ```txt
+--arriba        = fusions.tsv
+--cicero        = annotated.fusion.txt
 --dragen        = DRAGEN.fusion_candidates.final
 --fusionCatcher = final-list_candidate-fusion-genes.txt
 --fusionMap     = FusionDetection.FusionReport.Table.txt
