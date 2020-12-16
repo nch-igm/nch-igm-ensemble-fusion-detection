@@ -263,11 +263,12 @@ R/assemble_results.R --samples s1
 and name the output files
 
 ```txt
---outReport      = overlap_$sample.tsv
---outReportfilt  = overlap_filter_$sample.tsv
---foutReport     = filtered_overlap_whitelist_$sample.tsv
---foutReport3    = filtered_overlap_whitelist_3callers_$sample.tsv
---outBreakpoints = breakpoints_$sample.tsv
+--outReport      	= overlap_$sample.tsv
+--collapsedoutReport	= collapsed_3callers_$sample.tsv
+--foutReport     	= filtered_overlap_2callers_$sample.tsv
+--foutReport3    	= filtered_overlap_3callers_$sample.tsv
+--outSingleton		= Singleton_KnownFusions_$sample.tsv
+--outBreakpoints 	= breakpoints_$sample.tsv
 ```
 
 You can override the default output file names with the `--*out*` parameters.
