@@ -30,6 +30,10 @@ add_ranks <- function(tool, results) {
     results <- add_ranks_tophat_fusion(results)
   } else if (tool == "dragen") {
     results <- add_ranks_dragen(results)
+  } else if (tool == "arriba") {
+    results <- add_ranks_arriba(results)
+  } else if (tool == "cicero") {
+    results <- add_ranks_cicero(results)
   } else {
     print(paste0("Tool ", tool, " is not a valid tool (add_ranks)."))
     stop()
@@ -85,6 +89,18 @@ add_ranks_tophat_fusion <- function(results) {
 
 add_ranks_dragen <- function(results) {
   results <- dplyr::arrange(results, dplyr::desc(Score))
+  results <- dplyr::mutate(results, Rank = seq.int(nrow(results)), Total = nrow(results))
+  return(results)
+}
+
+add_ranks_arriba <- function(results) {
+  results <- dplyr::arrange(results, dplyr::desc(SupportingReads))
+  results <- dplyr::mutate(results, Rank = seq.int(nrow(results)), Total = nrow(results))
+  return(results)
+}
+
+add_ranks_cicero <- function(results) {
+  results <- dplyr::arrange(results, dplyr::desc(SupportingReads))
   results <- dplyr::mutate(results, Rank = seq.int(nrow(results)), Total = nrow(results))
   return(results)
 }

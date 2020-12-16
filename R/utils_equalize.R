@@ -41,6 +41,10 @@ equalize_results <- function(tool, results) {
     results <- equalize_tophat_fusion(results)
   } else if (tool == "dragen") {
     results <- equalize_dragen(results)
+  } else if (tool == "arriba") {
+    results <- equalize_arriba(results)
+  } else if (tool == "cicero") {
+    results <- equalize_cicero(results)
   } else {
     print(paste0("Tool ", tool, " is not a valid tool (equalize_results)."))
     stop()
@@ -316,4 +320,59 @@ equalize_dragen <- function(dragen) {
   dragen$FMFusionJunctionSequence <- character(nrow(dragen))
 
   return(dragen)
+}
+
+equalize_arriba <- function(arriba) {
+  arriba$Gene1 <- arriba$Gene1
+  arriba$Gene2 <- arriba$Gene2
+
+  arriba$OrderedFusion <- get_ordered(arriba$Gene1, arriba$Gene2)
+  arriba$UnorderedFusion <- get_unordered(arriba$Gene1, arriba$Gene2)
+  arriba$SupportingReads <- arriba$split_reads1 + arriba$split_reads2 + arriba$discordant_mates
+
+
+  arriba$Chr1 <- vapply(strsplit(arriba$breakpoint1, ":", fixed = TRUE), `[`, 1, FUN.VALUE = character(1))
+  arriba$Chr1 <- equalize_chrom(arriba$Chr1)
+  arriba$Break1 <- vapply(strsplit(arriba$breakpoint1, ":", fixed = TRUE), `[`, 2, FUN.VALUE = character(1))
+  arriba$Strand1 <- substr(arriba$strand1, 1, 1)
+  arriba$Chr2 <- vapply(strsplit(arriba$breakpoint2, ":", fixed = TRUE), `[`, 1, FUN.VALUE = character(1))
+  arriba$Chr2 <- equalize_chrom(arriba$Chr2)
+  arriba$Break2 <- vapply(strsplit(arriba$breakpoint2, ":", fixed = TRUE), `[`, 2, FUN.VALUE = character(1))
+  arriba$Strand2 <- substr(arriba$strand2, 3, 3)
+
+  arriba$FMFusionID <- character(nrow(arriba))
+  arriba$FMFrameShiftClass <- arriba$reading_frame
+  arriba$FMKnownTranscript1 <- character(nrow(arriba))
+  arriba$FMKnownExonNumber1 <- character(nrow(arriba))
+  arriba$FMKnownTranscript2 <- character(nrow(arriba))
+  arriba$FMKnownExonNumber2 <- character(nrow(arriba))
+  arriba$FMFusionJunctionSequence <- arriba$fusion_transcript
+
+  return(arriba)
+}
+
+equalize_cicero <- function(cicero) {
+  cicero$Gene1 <- vapply(strsplit(cicero$geneA, ",", fixed = TRUE), `[`, 1, FUN.VALUE = character(1))
+  cicero$Gene2 <- vapply(strsplit(cicero$geneB, ",", fixed = TRUE), `[`, 1, FUN.VALUE = character(1))
+
+  cicero$OrderedFusion <- get_ordered(cicero$Gene1, cicero$Gene2)
+  cicero$UnorderedFusion <- get_unordered(cicero$Gene1, cicero$Gene2)
+  cicero$SupportingReads <- cicero$readsA + cicero$readsB
+
+  cicero$Chr1 <- equalize_chrom(cicero$chrA)
+  cicero$Break1 <- cicero$posA
+  cicero$Strand1 <- cicero$ortA
+  cicero$Chr2 <- equalize_chrom(cicero$chrB)
+  cicero$Break2 <- cicero$posB
+  cicero$Strand2 <- cicero$ortB
+
+  cicero$FMFusionID <- character(nrow(cicero))
+  cicero$FMFrameShiftClass <- character(nrow(cicero))
+  cicero$FMKnownTranscript1 <- character(nrow(cicero))
+  cicero$FMKnownExonNumber1 <- character(nrow(cicero))
+  cicero$FMKnownTranscript2 <- character(nrow(cicero))
+  cicero$FMKnownExonNumber2 <- character(nrow(cicero))
+  cicero$FMFusionJunctionSequence <- cicero$contig
+
+  return(cicero)
 }

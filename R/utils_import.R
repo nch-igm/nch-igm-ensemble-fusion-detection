@@ -40,6 +40,10 @@ import_results <- function(tool, location) {
     results <- import_tophat_fusion(location)
   } else if (tool == "dragen") {
     results <- import_dragen(location)
+  } else if (tool == "arriba") {
+    results <- import_arriba(location)
+  } else if (tool == "cicero") {
+    results <- import_cicero(location)
   } else {
     print(paste0("Tool ", tool, " is not a valid tool (import_results)."))
     stop()
@@ -222,4 +226,46 @@ import_dragen <- function(location) {
     colnames(dragen)[1] <- "FusionName"
   }
   return(dragen)
+}
+
+import_dragen <- function(location) {
+  dragen <- readr::read_delim(location, "\t", escape_double = FALSE, trim_ws = TRUE, 
+    col_type = readr::cols(.default = readr::col_character(), Score = readr::col_integer()))
+  if (nrow(dragen) == 0) {
+    dragen <- tibble::tibble()
+  } else {
+    colnames(dragen)[1] <- "FusionName"
+  }
+  return(dragen)
+}
+
+import_arriba <- function(location) {
+  arriba <- readr::read_delim(location, "\t", escape_double = FALSE, trim_ws = TRUE, 
+    col_type = readr::cols(.default = readr::col_character(), split_reads1 = readr::col_integer(), 
+      split_reads2 = readr::col_integer(), discordant_mates = readr::col_integer()))
+  colnames(arriba) <- c("Gene1", "Gene2", "strand1", "strand2", "breakpoint1", 
+    "breakpoint2", "site1", "site2", "type", "direction1", "direction2", "split_reads1", 
+    "split_reads2", "discordant_mates", "coverage1", "coverage2", "confidence", 
+    "closest_genomic_breakpoint1", "closest_genomic_breakpoint2", "filters", 
+    "fusion_transcript", "reading_frame", "peptide_sequence", "read_identifiers")
+  head(arriba)
+  if (nrow(arriba) == 0) {
+    arriba <- tibble::tibble()
+  }
+  return(arriba)
+}
+
+import_cicero <- function(location) {
+  cicero <- readr::read_delim(location, "\t", escape_double = FALSE, trim_ws = TRUE, 
+    na = "", col_type = readr::cols(.default = readr::col_character(), readsA = readr::col_integer(), 
+      readsB = readr::col_integer()))
+  colnames(cicero) <- c("sample", "geneA", "chrA", "posA", "ortA", "featureA", 
+    "geneB", "chrB", "posB", "ortB", "featureB", "sv_ort", "readsA", "readsB", 
+    "matchA", "matchB", "repeatA", "repeatB", "coverageA", "coverageB", "ratioA", 
+    "ratioB", "qposA", "qposB", "total_readsA", "total_readsB", "contig", "type")
+  head(cicero)
+  if (nrow(cicero) == 0) {
+    cicero <- tibble::tibble()
+  }
+  return(cicero)
 }
