@@ -48,7 +48,7 @@ install.packages('readr', repos='http://cran.us.r-project.org/')
 install.packages('DBI', repos='http://cran.us.r-project.org/')
 install.packages('RPostgres', repos='http://cran.us.r-project.org/')
 install.packages('dbplyr', repos='http://cran.us.r-project.org/')
-install.packages('magritter', repos='http://cran.us.r-project.org/')
+install.packages('magrittr', repos='http://cran.us.r-project.org/')
 install.packages('purrr', repos='http://cran.us.r-project.org/')
 ```
 
